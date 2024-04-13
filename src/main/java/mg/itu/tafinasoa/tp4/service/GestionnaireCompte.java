@@ -7,6 +7,12 @@ package mg.itu.tafinasoa.tp4.service;
 import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
+import java.util.List;
+import mg.itu.tafinasoa.tp4.entity.CompteBancaire;
 
 /**
  *
@@ -31,10 +37,26 @@ import jakarta.inject.Named;
 @RequestScoped
 public class GestionnaireCompte {
 
+    @PersistenceContext(unitName = "banquePU")
+    private EntityManager em;
+
     /**
      * Creates a new instance of GestionnaireCompte
      */
     public GestionnaireCompte() {
     }
 
+    @Transactional
+    public void creerCompte(CompteBancaire compteBancaire) {
+        em.persist(compteBancaire);
+    }
+
+    public List<CompteBancaire> getAllComptes() {
+        TypedQuery<CompteBancaire> typedQuery = em.createNamedQuery("CompteBancaire.findAll", CompteBancaire.class);
+        List<CompteBancaire> comptes = typedQuery.getResultList();
+        for (CompteBancaire compte : comptes) {
+            System.out.println(compte.toString());
+        }
+        return comptes;
+    }
 }
