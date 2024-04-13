@@ -5,7 +5,7 @@
 package mg.itu.tafinasoa.tp4.service;
 
 import jakarta.annotation.sql.DataSourceDefinition;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -34,7 +34,7 @@ import mg.itu.tafinasoa.tp4.entity.CompteBancaire;
 )
 
 @Named(value = "gestionnaireCompte")
-@RequestScoped
+@ApplicationScoped
 public class GestionnaireCompte {
 
     @PersistenceContext(unitName = "banquePU")
