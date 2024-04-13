@@ -5,7 +5,7 @@
 package mg.itu.tafinasoa.tp4.config;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.context.Initialized;
 import jakarta.enterprise.event.Observes;
 import jakarta.inject.Inject;
@@ -20,7 +20,7 @@ import mg.itu.tafinasoa.tp4.service.GestionnaireCompte;
  * @author aceky
  */
 @Named(value = "init")
-@ApplicationScoped
+@Dependent
 public class Init {
 
     /**
@@ -45,7 +45,7 @@ public class Init {
         }
     }
 
-    public void onStartup(@Observes @Initialized(ApplicationScoped.class) ServletContext context) {
+    public void onStartup(@Observes @Initialized(Dependent.class) ServletContext context) {
         init();
     }
 }
