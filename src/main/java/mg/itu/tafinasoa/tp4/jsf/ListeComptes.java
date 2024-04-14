@@ -10,6 +10,7 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 import mg.itu.tafinasoa.tp4.entity.CompteBancaire;
+import mg.itu.tafinasoa.tp4.jsf.util.Util;
 import mg.itu.tafinasoa.tp4.service.GestionnaireCompte;
 
 /**
@@ -36,5 +37,15 @@ public class ListeComptes implements Serializable {
             listComptesBancaires = gc.getAllComptes();
         }
         return listComptesBancaires;
+    }
+
+    public String supprimerCompte(CompteBancaire compte) {
+        if (gc.trouverCompteParId(compte.getId()) == null) {
+            Util.messageErreur("Le compte n'existe pas.");
+            return null;
+        }
+        gc.supprimerCompte(compte);
+        Util.addFlashInfoMessage("Le compte a été supprimé avec succès.");
+        return "listeComptes?faces-redirect=true";
     }
 }
