@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="/css/default.css"/>
         <h:outputStylesheet name="/css/cssLayout.css"/>
-        <title>Facelets Template</title>
+        <title>{#titre}</title>
     </h:head>
 
     <h:body>
@@ -19,6 +19,8 @@
             <div id="left">
                 <ui:insert name="left">
                     <ui:include src="menu.xhtml"/>
+                    <h:messages globalOnly="true" infoStyle="color: green;"
+                                errorStyle="display: none;"/>
                 </ui:insert>
             </div>
             <div id="content" class="left_content">

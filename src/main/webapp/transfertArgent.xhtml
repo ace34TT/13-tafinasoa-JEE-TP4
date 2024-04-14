@@ -15,9 +15,20 @@
     <ui:define name="content">
         <h:form>
             <h:messages />
-            <h:inputText value="#{transfertBean.idCompteSource}" />
-            <h:inputText value="#{transfertBean.idCompteDestination}" />
-            <h:inputText value="#{transfertBean.montant}" />
+            <h:panelGrid columns="3">
+                <h:outputLabel for="idCompteSource" value="ID Compte Source:" />
+                <h:inputText id="idCompteSource" value="#{transfertBean.idCompteSource}" required="true" />
+                <h:message for="idCompteSource" />
+
+                <h:outputLabel for="idCompteDestination" value="ID Compte Destination:" />
+                <h:inputText id="idCompteDestination" value="#{transfertBean.idCompteDestination}" required="true" />
+                <h:message for="idCompteDestination"  />
+
+                <h:outputLabel for="montant" value="Montant:" />
+                <h:inputText id="montant" value="#{transfertBean.montant}" required="true" />
+                <h:message for="montant" />
+            </h:panelGrid>
+
             <h:commandButton value="Transférer" action="#{transfertBean.effectuerTransfert}" />
         </h:form>
     </ui:define>
