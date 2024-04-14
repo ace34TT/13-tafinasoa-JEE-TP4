@@ -59,4 +59,30 @@ public class GestionnaireCompte {
         }
         return comptes;
     }
+
+    public CompteBancaire trouverCompteParId(Long id) {
+        return em.find(CompteBancaire.class, id);
+    }
+
+    @Transactional
+    public void effectuerTransfert(Long idCompteSource, Long idCompteDestination, int montant) {
+        CompteBancaire compteSource = trouverCompteParId(idCompteSource);
+        CompteBancaire compteDestination = trouverCompteParId(idCompteDestination);
+
+        if (compteSource == null || compteDestination == null) {
+            throw new IllegalArgumentException("Un ou plusieurs comptes n'existent pas.");
+        }
+
+        if (compteSource.getSolde() < montant) {
+            throw new IllegalArgumentException("Solde insuffisant dans le compte source.");
+        }
+
+        compteSource.retirer(montant);
+        compteDestination.deposer(montant);
+
+        em.merge(compteSource);
+        em.merge(compteDestination);
+
+        System.out.println("Transfert de " + montant + " effectué de " + compteSource.getId() + " vers " + compteDestination.getId());
+    }
 }
