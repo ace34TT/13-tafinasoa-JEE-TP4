@@ -87,7 +87,7 @@ public class GestionnaireCompte {
     }
 
     @Transactional
-    public void deposerOuRetirerArgent(CompteBancaire compte) {
+    public void modifierCompte(CompteBancaire compte) {
         em.merge(compte);
     }
 

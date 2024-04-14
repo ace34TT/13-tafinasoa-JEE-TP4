@@ -53,7 +53,7 @@ public class DeposerRetirerArgentBean implements Serializable {
         }
 
         compte.deposer(montant);
-        gestionnaireCompte.deposerOuRetirerArgent(compte);
+        gestionnaireCompte.modifierCompte(compte);
         Util.addFlashInfoMessage("Dépôt effectué avec succès.");
         return "listeComptes?faces-redirect=true";
     }
@@ -74,7 +74,7 @@ public class DeposerRetirerArgentBean implements Serializable {
             return null;
         }
         compte.retirer(montant);
-        gestionnaireCompte.deposerOuRetirerArgent(compte);
+        gestionnaireCompte.modifierCompte(compte);
         Util.addFlashInfoMessage("Retrait effectué avec succès.");
         return "listeComptes?faces-redirect=true";
     }

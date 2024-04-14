@@ -48,6 +48,14 @@
                     </f:facet>
                     <h:outputText value="#{item.solde}"/>
                 </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Modifier le nom" />
+                    </f:facet>
+                    <h:link value="Modifier" outcome="modifierNomCompte.xhtml">
+                        <f:param name="idCompte" value="#{item.id}" />
+                    </h:link>
+                </p:column>
                 <p:column style="width:16px">
                     <f:facet name="header">
                         <h:outputText value="Action"/>
@@ -57,6 +65,7 @@
                         <f:param name="idCompte" value="#{item.id}"/>
                     </h:commandLink>
                 </p:column>
+
             </p:dataTable>
         </h:form>
         <h:messages/>
