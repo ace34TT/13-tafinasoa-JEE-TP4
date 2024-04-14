@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/template_default.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:p="http://primefaces.org/ui"
+                >
+
+    <ui:define name="top">
+        top
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel for="nomTitulaire" value="Nom du titulaire:" />
+                <h:inputText id="nomTitulaire" value="#{ajouterCompteBean.nomTitulaire}" />
+                <h:message for="nomTitulaire" style="color:red" />
+                <h:outputLabel for="solde" value="Solde:" />
+                <h:inputText id="solde" value="#{ajouterCompteBean.solde}" />
+                <h:message for="solde" style="color:red" />
+            </h:panelGrid>
+            <h:commandButton value="Ajouter Compte" action="#{ajouterCompteBean.ajouterCompte}" />
+        </h:form>
+    </ui:define>
+
+</ui:composition>
