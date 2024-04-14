@@ -85,4 +85,9 @@ public class GestionnaireCompte {
 
         System.out.println("Transfert de " + montant + " effectué de " + compteSource.getId() + " vers " + compteDestination.getId());
     }
+
+    @Transactional
+    public void deposerOuRetirerArgent(CompteBancaire compte) {
+        em.merge(compte);
+    }
 }
