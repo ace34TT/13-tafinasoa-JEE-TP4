@@ -49,12 +49,12 @@ public class AjouterCompteBean {
     public String ajouterCompte() {
         if (nomTitulaire == null || nomTitulaire.isEmpty()) {
             Util.messageErreur("Le nom du titulaire est requis.");
-            return null; // Restez sur la même page pour corriger l'erreur
+            return null;
         }
 
         if (solde <= 0) {
             Util.messageErreur("Le solde du compte doit être supérieur à zéro.");
-            return null; // Restez sur la même page pour corriger l'erreur
+            return null;
         }
 
         gestionnaireCompte.creerCompte(new CompteBancaire(nomTitulaire, solde));

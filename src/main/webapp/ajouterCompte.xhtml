@@ -7,21 +7,21 @@
                 xmlns:f="jakarta.faces.core"
                 xmlns:p="http://primefaces.org/ui"
                 >
-
     <ui:define name="top">
-        top
+        Ajouter nouveau compte 
     </ui:define>
 
     <ui:define name="content">
         <h:form>
             <h:panelGrid columns="3">
                 <h:outputLabel for="nomTitulaire" value="Nom du titulaire:" />
-                <h:inputText id="nomTitulaire" value="#{ajouterCompteBean.nomTitulaire}" />
+                <h:inputText id="nomTitulaire" value="#{ajouterCompteBean.nomTitulaire}" required="true"/>
                 <h:message for="nomTitulaire" style="color:red" />
                 <h:outputLabel for="solde" value="Solde:" />
-                <h:inputText id="solde" value="#{ajouterCompteBean.solde}" />
+                <h:inputText id="solde" value="#{ajouterCompteBean.solde}" required="true" />
                 <h:message for="solde" style="color:red" />
             </h:panelGrid>
+            <h:messages />
             <h:commandButton value="Ajouter Compte" action="#{ajouterCompteBean.ajouterCompte}" />
         </h:form>
     </ui:define>

@@ -93,7 +93,6 @@ public class GestionnaireCompte {
 
     @Transactional
     public void supprimerCompte(CompteBancaire compte) {
-        // Vérifie si le compte existe dans la base de données avant de le supprimer
         CompteBancaire compteASupprimer = em.find(CompteBancaire.class, compte.getId());
         if (compteASupprimer != null) {
             em.remove(compteASupprimer);

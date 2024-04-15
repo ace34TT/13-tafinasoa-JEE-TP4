@@ -57,10 +57,11 @@ public class TransfertBean {
             for (String erreur : erreurs) {
                 Util.messageErreur(erreur);
             }
-            return null; // Rester sur la même page pour corriger les erreurs
+            return null;
         }
+
         gestionnaireCompte.effectuerTransfert(idCompteSource, idCompteDestination, montant);
-        Util.addFlashInfoMessage("Transfert effectué avec succès");
+        Util.addFlashInfoMessage("Transfert effectué avec succès  " + montant + " " + compteSource.getNom() + " vers " + compteDestination.getNom());
         return "listeComptes?faces-redirect=true";
     }
 

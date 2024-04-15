@@ -51,7 +51,6 @@ public class DeposerRetirerArgentBean implements Serializable {
             Util.messageErreur("Impossible de trouver le compte.");
             return null;
         }
-
         compte.deposer(montant);
         gestionnaireCompte.modifierCompte(compte);
         Util.addFlashInfoMessage("Dépôt effectué avec succès.");

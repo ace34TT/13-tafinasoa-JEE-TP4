@@ -4,14 +4,12 @@
  */
 package mg.itu.tafinasoa.tp4.config;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Initialized;
 import jakarta.enterprise.event.Observes;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.servlet.ServletContext;
-import jakarta.transaction.Transactional;
 import mg.itu.tafinasoa.tp4.entity.CompteBancaire;
 import mg.itu.tafinasoa.tp4.service.GestionnaireCompte;
 
@@ -33,8 +31,6 @@ public class Init {
 
     }
 
-    @PostConstruct
-    @Transactional
     public void init() {
         System.out.println("mg.itu.tafinasoa.tp4.config.Init.<init>()");
         if (gc.getAllComptes().size() == 0) {
