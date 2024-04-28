@@ -45,6 +45,14 @@ public class CompteBancaire implements Serializable {
     public CompteBancaire() {
     }
 
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
     public CompteBancaire(String nom, int solde) {
         this.nom = nom;
         this.solde = solde;
