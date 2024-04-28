@@ -7,6 +7,7 @@ package mg.itu.tafinasoa.tp4.jsf;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.persistence.OptimisticLockException;
 import java.io.Serializable;
 import mg.itu.tafinasoa.tp4.entity.CompteBancaire;
 import mg.itu.tafinasoa.tp4.jsf.util.Util;
@@ -34,7 +35,6 @@ public class DeposerRetirerArgentBean implements Serializable {
     }
 
     public void chargerCompte() {
-
         compte = gestionnaireCompte.trouverCompteParId(idCompte);
         System.out.println("mg.itu.tafinasoa.tp4.jsf.DeposerRetirerArgentBean.chargerCompte()");
         System.out.println(compte.getNom());
@@ -42,40 +42,53 @@ public class DeposerRetirerArgentBean implements Serializable {
     }
 
     public String deposer() {
-        if (montant <= 0) {
-            Util.messageErreur("Le montant doit être supérieur à zéro.");
+        try {
+            if (montant <= 0) {
+                Util.messageErreur("Le montant doit être supérieur à zéro.");
+                return null;
+            }
+
+            if (compte == null) {
+                Util.messageErreur("Impossible de trouver le compte.");
+                return null;
+            }
+            compte.deposer(montant);
+            gestionnaireCompte.modifierCompte(compte);
+            Util.addFlashInfoMessage("Dépôt effectué avec succès.");
+            return "listeComptes?faces-redirect=true";
+        } catch (OptimisticLockException ex) {
+            Util.messageErreur("Le compte de " + compte.getNom()
+                    + " a été modifié ou supprimé par un autre utilisateur !");
             return null;
         }
 
-        if (compte == null) {
-            Util.messageErreur("Impossible de trouver le compte.");
-            return null;
-        }
-        compte.deposer(montant);
-        gestionnaireCompte.modifierCompte(compte);
-        Util.addFlashInfoMessage("Dépôt effectué avec succès.");
-        return "listeComptes?faces-redirect=true";
     }
 
     public String retirer() {
-        if (montant <= 0) {
-            Util.messageErreur("Le montant doit être supérieur à zéro.");
-            return null;
-        }
+        try {
+            if (montant <= 0) {
+                Util.messageErreur("Le montant doit être supérieur à zéro.");
+                return null;
+            }
 
-        if (compte == null) {
-            Util.messageErreur("Impossible de trouver le compte.");
-            return null;
-        }
+            if (compte == null) {
+                Util.messageErreur("Impossible de trouver le compte.");
+                return null;
+            }
 
-        if (compte.getSolde() < montant) {
-            Util.messageErreur("Solde insuffisant.");
+            if (compte.getSolde() < montant) {
+                Util.messageErreur("Solde insuffisant.");
+                return null;
+            }
+            compte.retirer(montant);
+            gestionnaireCompte.modifierCompte(compte);
+            Util.addFlashInfoMessage("Retrait effectué avec succès.");
+            return "listeComptes?faces-redirect=true";
+        } catch (OptimisticLockException ex) {
+            Util.messageErreur("Le compte de " + compte.getNom()
+                    + " a été modifié ou supprimé par un autre utilisateur !");
             return null;
         }
-        compte.retirer(montant);
-        gestionnaireCompte.modifierCompte(compte);
-        Util.addFlashInfoMessage("Retrait effectué avec succès.");
-        return "listeComptes?faces-redirect=true";
     }
 
     public Integer getIdCompte() {
