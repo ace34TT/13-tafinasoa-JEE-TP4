@@ -7,7 +7,6 @@
                 xmlns:f="jakarta.faces.core"
                 xmlns:p="http://primefaces.org/ui"
                 >
-
     <ui:define name="top">
         Liste de tous les comptes
     </ui:define>
@@ -24,7 +23,7 @@
                          rows="10"
                          rowsPerPageTemplate="2,4,8,10"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-                <p:column>
+                <p:column width="16">
                     <f:facet name="header">
                         <h:outputText value="Id" />
                     </f:facet>
@@ -32,10 +31,8 @@
                         <f:param name="idCompte" value="#{item.id}" />
                         #{item.id}
                     </h:outputLink>
-
                 </p:column>
                 <p:column>
-
                     <f:facet name="header">
                         <h:outputText value="Nom"/>
                     </f:facet>
@@ -55,7 +52,7 @@
                         <f:param name="idCompte" value="#{item.id}" />
                     </h:link>
                 </p:column>
-                <p:column style="width:16px">
+                <p:column >
                     <f:facet name="header">
                         <h:outputText value="Action"/>
                     </f:facet>
@@ -63,6 +60,17 @@
                         <h:graphicImage library="images" name="del.png" width="16" height="16"/>
                         <f:param name="idCompte" value="#{item.id}"/>
                     </h:commandLink>
+                </p:column>
+                <p:column >
+                    <f:facet name="header">
+                        <h:outputText value="Action"/>
+                    </f:facet>
+                    <h:form>
+                        <h:link outcome="operations">
+                            <f:param name="idCompte" value="#{item.id}"/>
+                            <h:outputText value="Historique"/>
+                        </h:link>
+                    </h:form>
                 </p:column>
 
             </p:dataTable>

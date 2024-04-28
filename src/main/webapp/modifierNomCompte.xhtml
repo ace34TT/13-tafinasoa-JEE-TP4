@@ -19,9 +19,9 @@
 
     <ui:define name="content">
         <h:form>
-            <h:outputText value="ID du compte : #{modifierNomCompteBean.compte.id}" />
-            <h:outputText value="Nom actuel du compte : #{modifierNomCompteBean.compte.nom}" />
-            <h:outputLabel for="nouveauNom" value="Nouveau nom du compte :" />
+            <h:outputText value="ID du compte : #{modifierNomCompteBean.compte.id}" /> <br/>
+            <h:outputText value="Nom actuel du compte : #{modifierNomCompteBean.compte.nom}" /><br/>
+            <h:outputLabel for="nouveauNom" value="Nouveau nom du compte :" /><br/>
             <h:inputText id="nouveauNom" value="#{modifierNomCompteBean.compte.nom}" required="true" />
             <h:commandButton value="Modifier" action="#{modifierNomCompteBean.modifierNom}" />
             <h:messages />

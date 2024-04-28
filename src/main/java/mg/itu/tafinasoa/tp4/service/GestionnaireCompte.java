@@ -60,12 +60,12 @@ public class GestionnaireCompte {
         return comptes;
     }
 
-    public CompteBancaire trouverCompteParId(Long id) {
+    public CompteBancaire trouverCompteParId(Integer id) {
         return em.find(CompteBancaire.class, id);
     }
 
     @Transactional
-    public void effectuerTransfert(Long idCompteSource, Long idCompteDestination, int montant) {
+    public void effectuerTransfert(Integer idCompteSource, Integer idCompteDestination, int montant) {
         CompteBancaire compteSource = trouverCompteParId(idCompteSource);
         CompteBancaire compteDestination = trouverCompteParId(idCompteDestination);
 

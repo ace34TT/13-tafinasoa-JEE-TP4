@@ -23,7 +23,7 @@ public class DeposerRetirerArgentBean implements Serializable {
     @Inject
     private GestionnaireCompte gestionnaireCompte;
 
-    private Long idCompte;
+    private Integer idCompte;
     private Integer montant;
     private CompteBancaire compte;
 
@@ -78,11 +78,11 @@ public class DeposerRetirerArgentBean implements Serializable {
         return "listeComptes?faces-redirect=true";
     }
 
-    public Long getIdCompte() {
+    public Integer getIdCompte() {
         return idCompte;
     }
 
-    public void setIdCompte(Long idCompte) {
+    public void setIdCompte(Integer idCompte) {
         this.idCompte = idCompte;
     }
 

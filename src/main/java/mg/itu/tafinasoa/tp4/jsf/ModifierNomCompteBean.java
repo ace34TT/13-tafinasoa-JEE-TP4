@@ -23,7 +23,7 @@ public class ModifierNomCompteBean implements Serializable {
     @Inject
     private GestionnaireCompte gestionnaireCompte;
 
-    private Long idCompte;
+    private Integer idCompte;
     private CompteBancaire compte;
     private String currentName;
 
@@ -50,11 +50,11 @@ public class ModifierNomCompteBean implements Serializable {
         }
     }
 
-    public Long getIdCompte() {
+    public Integer getIdCompte() {
         return idCompte;
     }
 
-    public void setIdCompte(Long idCompte) {
+    public void setIdCompte(Integer idCompte) {
         this.idCompte = idCompte;
     }
 

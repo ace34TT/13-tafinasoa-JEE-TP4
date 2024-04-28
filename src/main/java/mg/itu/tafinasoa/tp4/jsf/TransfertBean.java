@@ -21,8 +21,8 @@ import mg.itu.tafinasoa.tp4.service.GestionnaireCompte;
 @RequestScoped
 public class TransfertBean {
 
-    private Long idCompteSource;
-    private Long idCompteDestination;
+    private Integer idCompteSource;
+    private Integer idCompteDestination;
     private Integer montant;
 
     List<String> erreurs = new ArrayList<>();
@@ -65,19 +65,19 @@ public class TransfertBean {
         return "listeComptes?faces-redirect=true";
     }
 
-    public Long getIdCompteSource() {
+    public Integer getIdCompteSource() {
         return idCompteSource;
     }
 
-    public void setIdCompteSource(Long idCompteSource) {
+    public void setIdCompteSource(Integer idCompteSource) {
         this.idCompteSource = idCompteSource;
     }
 
-    public Long getIdCompteDestination() {
+    public Integer getIdCompteDestination() {
         return idCompteDestination;
     }
 
-    public void setIdCompteDestination(Long idCompteDestination) {
+    public void setIdCompteDestination(Integer idCompteDestination) {
         this.idCompteDestination = idCompteDestination;
     }
 

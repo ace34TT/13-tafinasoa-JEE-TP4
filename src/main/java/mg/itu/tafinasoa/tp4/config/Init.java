@@ -39,6 +39,7 @@ public class Init {
             gc.creerCompte(new CompteBancaire("Ringo Starr", 20000));
             gc.creerCompte(new CompteBancaire("Georges Harrisson", 100000));
         }
+        gc.effectuerTransfert(1, 2, 20000);
     }
 
     public void onStartup(@Observes @Initialized(ApplicationScoped.class) ServletContext context) {

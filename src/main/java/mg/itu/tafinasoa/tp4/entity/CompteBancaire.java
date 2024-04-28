@@ -4,14 +4,20 @@
  */
 package mg.itu.tafinasoa.tp4.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -27,9 +33,14 @@ public class CompteBancaire implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
+    @Version
+    private int version;
     private String nom;
     private int solde;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<OperationBancaire> operations = new ArrayList<>();
 
     public CompteBancaire() {
     }
@@ -37,21 +48,24 @@ public class CompteBancaire implements Serializable {
     public CompteBancaire(String nom, int solde) {
         this.nom = nom;
         this.solde = solde;
+        operations.add(new OperationBancaire("Création du compte", solde));
     }
 
     public void deposer(int montant) {
         solde += montant;
+        operations.add(new OperationBancaire("Credit ", montant));
     }
 
     public void retirer(int montant) {
         if (montant < solde) {
             solde -= montant;
+            operations.add(new OperationBancaire("Debit", solde));
         } else {
             solde = 0;
         }
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -76,6 +90,11 @@ public class CompteBancaire implements Serializable {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
+    }
+
+    public List<OperationBancaire> getOperations() {
+
+        return operations;
     }
 
     @Override
